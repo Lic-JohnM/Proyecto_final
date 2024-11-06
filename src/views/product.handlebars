@@ -1,0 +1,32 @@
+<!-- views/products.handlebars -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>{{title}}</h1>
+  <ul>
+    {{#each products}}
+      <li>{{this.name}} - Precio: {{this.price}}</li>
+      <!-- Botón para agregar al carrito -->
+      <form action="/carts/add" method="POST">
+        <input type="hidden" name="productId" value="{{this._id}}">
+        <button type="submit">Agregar al carrito</button>
+      </form>
+    {{/each}}
+  </ul>
+
+  <!-- Navegación de la paginación -->
+  <div>
+    {{#if hasPrevPage}}
+      <a href="{{prevLink}}">Página Anterior</a>
+    {{/if}}
+    <span>Página {{currentPage}} de {{totalPages}}</span>
+    {{#if hasNextPage}}
+      <a href="{{nextLink}}">Página Siguiente</a>
+    {{/if}}
+  </div>
+</body>
+</html>
